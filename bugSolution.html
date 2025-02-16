@@ -1,0 +1,17 @@
+The solution is to avoid relying on `@apply` for dynamically added classes. Instead, apply the necessary utility classes directly using JavaScript.  For example, instead of:
+
+```html
+<div v-myDirective></div>
+```
+
+And:
+
+```javascript
+const myDirective = {
+  mounted: function (el) {
+    el.classList.add('bg-blue-500', 'p-4') //Directly add classes
+  }
+}
+```
+
+This approach ensures that the styles are applied correctly regardless of when the classes are added to the element.
