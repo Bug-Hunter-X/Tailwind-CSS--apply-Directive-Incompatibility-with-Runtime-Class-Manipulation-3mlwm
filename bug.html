@@ -1,0 +1,17 @@
+The issue arises when using Tailwind CSS's `@apply` directive within a custom directive.  For instance, if you define a custom directive like this:
+
+```html
+<script>
+  const myDirective = {
+    mounted: function (el) {
+      el.classList.add('bg-blue-500', 'p-4')
+    }
+  }
+</script>
+
+<div v-bind:class="{'bg-blue-500 p-4': true}"></div>
+<div v-bind:class="['bg-blue-500', 'p-4']"></div>
+<div v-myDirective></div>
+```
+
+And then attempt to use `@apply` within a Tailwind class, it may not work as expected.  The `@apply` directive is designed to work during the build process, not at runtime, so it won't dynamically apply styles when added through Javascript.
